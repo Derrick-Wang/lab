@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shu.sfoan.dao.mapper.EquipmentMapper" >
+  <resultMap id="BaseResultMap" type="com.shu.sfoan.dao.model.Equipment" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="equ_id" property="equId" jdbcType="VARCHAR" />
+    <result column="equ_name" property="equName" jdbcType="VARCHAR" />
+    <result column="equ_type" property="equType" jdbcType="INTEGER" />
+    <result column="equ_price" property="equPrice" jdbcType="VARCHAR" />
+    <result column="owner" property="owner" jdbcType="INTEGER" />
+    <result column="equ_keeper" property="equKeeper" jdbcType="INTEGER" />
+    <result column="buying_date" property="buyingDate" jdbcType="VARCHAR" />
+    <result column="applying_date" property="applyingDate" jdbcType="VARCHAR" />
+    <result column="total_time" property="totalTime" jdbcType="INTEGER" />
+    <result column="equ_status" property="equStatus" jdbcType="INTEGER" />
+    <result column="equ_location" property="equLocation" jdbcType="VARCHAR" />
+    <result column="statement" property="statement" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, equ_id, equ_name, equ_type, equ_price, owner, equ_keeper, buying_date, applying_date, 
+    total_time, equ_status, equ_location, statement
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shu.sfoan.dao.model.EquipmentExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from equipment_0
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from equipment_0
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from equipment_0
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shu.sfoan.dao.model.EquipmentExample" >
+    delete from equipment_0
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shu.sfoan.dao.model.Equipment" >
+    insert into equipment_0 (id, equ_id, equ_name, 
+      equ_type, equ_price, owner, 
+      equ_keeper, buying_date, applying_date, 
+      total_time, equ_status, equ_location, 
+      statement)
+    values (#{id,jdbcType=INTEGER}, #{equId,jdbcType=VARCHAR}, #{equName,jdbcType=VARCHAR}, 
+      #{equType,jdbcType=INTEGER}, #{equPrice,jdbcType=VARCHAR}, #{owner,jdbcType=INTEGER}, 
+      #{equKeeper,jdbcType=INTEGER}, #{buyingDate,jdbcType=VARCHAR}, #{applyingDate,jdbcType=VARCHAR}, 
+      #{totalTime,jdbcType=INTEGER}, #{equStatus,jdbcType=INTEGER}, #{equLocation,jdbcType=VARCHAR}, 
+      #{statement,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shu.sfoan.dao.model.Equipment" >
+    insert into equipment_0
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="equId != null" >
+        equ_id,
+      </if>
+      <if test="equName != null" >
+        equ_name,
+      </if>
+      <if test="equType != null" >
+        equ_type,
+      </if>
+      <if test="equPrice != null" >
+        equ_price,
+      </if>
+      <if test="owner != null" >
+        owner,
+      </if>
+      <if test="equKeeper != null" >
+        equ_keeper,
+      </if>
+      <if test="buyingDate != null" >
+        buying_date,
+      </if>
+      <if test="applyingDate != null" >
+        applying_date,
+      </if>
+      <if test="totalTime != null" >
+        total_time,
+      </if>
+      <if test="equStatus != null" >
+        equ_status,
+      </if>
+      <if test="equLocation != null" >
+        equ_location,
+      </if>
+      <if test="statement != null" >
+        statement,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="equId != null" >
+        #{equId,jdbcType=VARCHAR},
+      </if>
+      <if test="equName != null" >
+        #{equName,jdbcType=VARCHAR},
+      </if>
+      <if test="equType != null" >
+        #{equType,jdbcType=INTEGER},
+      </if>
+      <if test="equPrice != null" >
+        #{equPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="owner != null" >
+        #{owner,jdbcType=INTEGER},
+      </if>
+      <if test="equKeeper != null" >
+        #{equKeeper,jdbcType=INTEGER},
+      </if>
+      <if test="buyingDate != null" >
+        #{buyingDate,jdbcType=VARCHAR},
+      </if>
+      <if test="applyingDate != null" >
+        #{applyingDate,jdbcType=VARCHAR},
+      </if>
+      <if test="totalTime != null" >
+        #{totalTime,jdbcType=INTEGER},
+      </if>
+      <if test="equStatus != null" >
+        #{equStatus,jdbcType=INTEGER},
+      </if>
+      <if test="equLocation != null" >
+        #{equLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="statement != null" >
+        #{statement,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shu.sfoan.dao.model.EquipmentExample" resultType="java.lang.Integer" >
+    select count(*) from equipment_0
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update equipment_0
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.equId != null" >
+        equ_id = #{record.equId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.equName != null" >
+        equ_name = #{record.equName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.equType != null" >
+        equ_type = #{record.equType,jdbcType=INTEGER},
+      </if>
+      <if test="record.equPrice != null" >
+        equ_price = #{record.equPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.owner != null" >
+        owner = #{record.owner,jdbcType=INTEGER},
+      </if>
+      <if test="record.equKeeper != null" >
+        equ_keeper = #{record.equKeeper,jdbcType=INTEGER},
+      </if>
+      <if test="record.buyingDate != null" >
+        buying_date = #{record.buyingDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applyingDate != null" >
+        applying_date = #{record.applyingDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.totalTime != null" >
+        total_time = #{record.totalTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.equStatus != null" >
+        equ_status = #{record.equStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.equLocation != null" >
+        equ_location = #{record.equLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.statement != null" >
+        statement = #{record.statement,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update equipment_0
+    set id = #{record.id,jdbcType=INTEGER},
+      equ_id = #{record.equId,jdbcType=VARCHAR},
+      equ_name = #{record.equName,jdbcType=VARCHAR},
+      equ_type = #{record.equType,jdbcType=INTEGER},
+      equ_price = #{record.equPrice,jdbcType=VARCHAR},
+      owner = #{record.owner,jdbcType=INTEGER},
+      equ_keeper = #{record.equKeeper,jdbcType=INTEGER},
+      buying_date = #{record.buyingDate,jdbcType=VARCHAR},
+      applying_date = #{record.applyingDate,jdbcType=VARCHAR},
+      total_time = #{record.totalTime,jdbcType=INTEGER},
+      equ_status = #{record.equStatus,jdbcType=INTEGER},
+      equ_location = #{record.equLocation,jdbcType=VARCHAR},
+      statement = #{record.statement,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shu.sfoan.dao.model.Equipment" >
+    update equipment_0
+    <set >
+      <if test="equId != null" >
+        equ_id = #{equId,jdbcType=VARCHAR},
+      </if>
+      <if test="equName != null" >
+        equ_name = #{equName,jdbcType=VARCHAR},
+      </if>
+      <if test="equType != null" >
+        equ_type = #{equType,jdbcType=INTEGER},
+      </if>
+      <if test="equPrice != null" >
+        equ_price = #{equPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="owner != null" >
+        owner = #{owner,jdbcType=INTEGER},
+      </if>
+      <if test="equKeeper != null" >
+        equ_keeper = #{equKeeper,jdbcType=INTEGER},
+      </if>
+      <if test="buyingDate != null" >
+        buying_date = #{buyingDate,jdbcType=VARCHAR},
+      </if>
+      <if test="applyingDate != null" >
+        applying_date = #{applyingDate,jdbcType=VARCHAR},
+      </if>
+      <if test="totalTime != null" >
+        total_time = #{totalTime,jdbcType=INTEGER},
+      </if>
+      <if test="equStatus != null" >
+        equ_status = #{equStatus,jdbcType=INTEGER},
+      </if>
+      <if test="equLocation != null" >
+        equ_location = #{equLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="statement != null" >
+        statement = #{statement,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shu.sfoan.dao.model.Equipment" >
+    update equipment_0
+    set equ_id = #{equId,jdbcType=VARCHAR},
+      equ_name = #{equName,jdbcType=VARCHAR},
+      equ_type = #{equType,jdbcType=INTEGER},
+      equ_price = #{equPrice,jdbcType=VARCHAR},
+      owner = #{owner,jdbcType=INTEGER},
+      equ_keeper = #{equKeeper,jdbcType=INTEGER},
+      buying_date = #{buyingDate,jdbcType=VARCHAR},
+      applying_date = #{applyingDate,jdbcType=VARCHAR},
+      total_time = #{totalTime,jdbcType=INTEGER},
+      equ_status = #{equStatus,jdbcType=INTEGER},
+      equ_location = #{equLocation,jdbcType=VARCHAR},
+      statement = #{statement,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
