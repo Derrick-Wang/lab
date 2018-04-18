@@ -53,7 +53,7 @@ public class LabApplicationTests {
 		equipment.setApplyingDate("2009-03-21");	//  开始使用时间
 		equipment.setTotalTime(3414);				//  总使用时间
 		equipment.setEquStatus(1);					//  设备状态（1:使用中2:维修中3:损坏）
-		equipment.setEquLocation("宝山校区");		//* 设备所在地
+		equipment.setEquLocation("106");		//* 设备所在地
 		equipment.setStatement("小心使用");			//  声明
 		equipmentService.insert(equipment);
 	}
