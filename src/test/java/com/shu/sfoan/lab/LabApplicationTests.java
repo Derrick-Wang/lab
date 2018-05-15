@@ -90,7 +90,7 @@ public class LabApplicationTests {
 	@Test
 	public void findBookequByBooktime(){
 		List<BookEqu> bookEquList= bookEquService.selectByBooktime(3);
-		System.out.println(bookEquList);
+		System.out.println(bookEquList.get(0).getCreateTime());
 	}
 	@Test
 	public void get(){
