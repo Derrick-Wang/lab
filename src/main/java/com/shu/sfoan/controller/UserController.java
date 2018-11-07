@@ -1,6 +1,7 @@
 package com.shu.sfoan.controller;
 
 import com.shu.sfoan.dao.model.User;
+import com.shu.sfoan.service.UserService;
 import com.shu.sfoan.service.impl.UserServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/user")
 public class UserController {
     @Autowired
-    public UserServiceImpl userService;
+    public UserService userService;
 
     @ApiOperation(value = "查询用户" ,  notes="查询用户")
     @ApiImplicitParams({

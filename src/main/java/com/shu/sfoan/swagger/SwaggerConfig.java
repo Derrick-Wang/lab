@@ -1,6 +1,5 @@
 package com.shu.sfoan.swagger;
 
-import com.google.common.base.Predicates;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,20 +21,10 @@ public class SwaggerConfig {
     @Bean
     public Docket swaggerSpringMvcPlugin() {
 
-        Docket docket = new Docket(DocumentationType.SWAGGER_2)
+        return new Docket(DocumentationType.SWAGGER_2)
                 .groupName("test")
                 .genericModelSubstitutes(DeferredResult.class)
                 .useDefaultResponseMessages(false)
-                .forCodeGeneration(true)
-                // base，最终调用接口后会和paths拼接在一起
-                .pathMapping("/")
-                .select()
-                //过滤的接口
-                .paths(Predicates.or(PathSelectors.regex("/api/.*")))
-                .build()
-                .apiInfo(apiInfo());
-
-        return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 //.pathMapping("/lab")
                 .select()
