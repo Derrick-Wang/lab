@@ -1,14 +1,16 @@
 package com.shu.sfoan.dao.mapper;
 
+import com.shu.sfoan.common.mapper.CustomMapper;
 import com.shu.sfoan.dao.model.User;
 import com.shu.sfoan.dao.model.UserExample;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
 
 @Repository
-public interface UserMapper {
+public interface UserMapper{
     int countByExample(UserExample example);
 
     int deleteByExample(UserExample example);
