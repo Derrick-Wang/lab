@@ -18,6 +18,6 @@ public class UserFacadeImpl implements UserFacade {
 
     @Override
     public User getUserByName(String name) {
-        return userManager.getUserByName();
+        return userManager.getUserByName(name);
     }
 }

@@ -44,15 +44,24 @@
         </rdb:props>
     </rdb:data-source>
 
-    <!-- 配置sqlSessionFactory -->
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+    <!-- 配置通用Mapper -->
+    <bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.shu.sfoan.dao.mapper"/>
+        <property name="properties">
+            <value>
+                mappers=com.shu.sfoan.common.mapper.CustomMapper
+            </value>
+        </property>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="shardingDataSource"/>
-        <property name="mapperLocations" value="classpath*:mapper/*Mapper.xml"/>
     </bean>
+
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="sqlSessionFactory"></constructor-arg>
+    </bean>
+
     <!-- 事务 -->
     <bean id="transactionManager"
           class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
