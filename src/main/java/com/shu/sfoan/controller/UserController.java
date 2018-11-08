@@ -1,6 +1,7 @@
 package com.shu.sfoan.controller;
 
 import com.shu.sfoan.dao.model.User;
+import com.shu.sfoan.facade.UserFacade;
 import com.shu.sfoan.service.impl.UserServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/user")
 public class UserController {
     @Autowired
-    public UserServiceImpl userService;
+    public UserFacade userFacade;
 
     @ApiOperation(value = "查询用户" ,  notes="查询用户")
     @ApiImplicitParams({
@@ -25,7 +26,7 @@ public class UserController {
     })
     @RequestMapping(value="/queryUser",method= RequestMethod.POST)
     public String findUser(@RequestParam(value = "name") String name){
-        User user = userService.selectByName(name);
+        User user = userFacade.getUserByName(name);
         return user.toString();
     }
 
